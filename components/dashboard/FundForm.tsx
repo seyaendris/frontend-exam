@@ -48,13 +48,22 @@ const FundForm = () => {
     },
   });
 
-  const onSubmit = async (data: BankAccountSchema) => {
+   const onSubmit = async (data: BankAccountSchema) => {
     setIsSubmitting(true);
     try {
       console.log('data:', data);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success('Bank details submitted successfully!');
-      router.push('/next-step');
+      
+      // Redirect to review page with form data as query params
+      router.push(`/dashboard/review?${new URLSearchParams({
+        bankName: data.bankName,
+        branch: data.branch,
+        accountName: data.accountName,
+        accountNumber: data.accountNumber,
+        // For file, you might want to store it temporarily or handle differently
+      }).toString()}`);
+      
     } catch (error) {
       toast.error('Submission failed');
       console.error('error:', error);
