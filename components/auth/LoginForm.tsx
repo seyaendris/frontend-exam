@@ -40,7 +40,7 @@ const LoginForm = () => {
 
       toast.success('Login successful!');
 
-      router.push('/dashboard');
+      router.push('/dashboard/partner-onboarding');
     } catch (error) {
       toast.error('Login failed', {
         description: 'Please check your credentials and try again.',
